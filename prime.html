@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript-Code</title>
+    <style>
+        input[type="text"] {
+            width: 205px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <table border=1 style="background-color: rgba(59, 58, 58, 0.116);">
+            <thead style="background-color: rgba(59, 58, 58, 0.11);">
+                <th colspan="2">
+                    <h3>1. Check Prime Number</h3>
+                </th>
+            </thead>
+            <tr>
+                <td>Please Enter Value</td>
+                <td><input type="text" name="" id="inp" placeholder="Enter Value"
+                        style="background-color: rgba(48, 97, 81, 0.247);"></td>
+            </tr>
+            <tr>
+                <td>1. Check Prime Number Using No Arguments No Return Value</td>
+                <td><input type="radio" name="select" id="f1"></td>
+            </tr>
+            <tr>
+                <td>2. Check Prime Number Using With Arguments No Return Value</td>
+                <td><input type="radio" name="select" id="f2"></td>
+            </tr>
+            <tr>
+                <td>3. Check Prime Number Using With Arguments With Return Value</td>
+                <td><input type="radio" name="select" id="f3"></td>
+            </tr>
+            <tr>
+                <td>4. Check Prime Number Using No Argument With Return Value</td>
+                <td><input type="radio" name="select" id="f4"></td>
+            </tr>
+            <tr>
+                <td>5. Check Prime Number Using Function Expression</td>
+                <td><input type="radio" name="select" id="f5"></td>
+            </tr>
+            <tr>
+                <td>6. Check Prime Number Using Arrow Function</td>
+                <td><input type="radio" name="select" id="f6"></td>
+            </tr>
+            <tr>
+                <td>7. Check Prime Number Using Callback Function</td>
+                <td><input type="radio" name="select" id="f7"></td>
+            </tr>
+            <tr>
+                <td>8. Check Prime Number Using Using Promise Function</td>
+                <td><input type="radio" name="select" id="f8"></td>
+            </tr>
+            <tr>
+                <td><button style="background-color: rgba(0, 0, 0, 0.274);" onclick="btn()"><b>Result</b></button></td>
+                <td><input type="text" name="" id="result" placeholder="Result"
+                        style="background-color: rgba(48, 97, 81, 0.247);font-weight: bold;">
+                </td>
+            </tr>
+        </table>
+    </center>
+    <script>
+        function btn() {
+            //check for null value
+            if (document.getElementById('inp').value == "") {
+                document.getElementById('result').value = "Please Enter Value";
+            }
+            //check for numaric value
+            else if (!document.getElementById('inp').value.match(/^[0-9]*$/)) {
+                document.getElementById('result').value = "Please Enter only numaric value";
+            }
+            else if (document.querySelectorAll('input[type="radio"]:checked').length == 0) {
+                document.getElementById('result').value = "Please Select one option";
+            }
+            //prime number check
+            else {
+                //no argument no return
+                if (document.getElementById('f1').checked == true) {
+                    let a = document.getElementById('inp').value;
+                    let flag = true;
+                    if (a == 1) {
+                        document.getElementById('result').value = "1 is neither prime nor composite";
+                    }
+                    else if (a <= 0) {
+                        document.getElementById('result').value = "Invalid Input";
+                    }
+                    else if (a > 1) {
+                        for (let i = 2; i < a; i++) {
+                            if (a % i == 0) {
+                                flag = false;
+                                break;
+                            }
+                        }
+                        if (flag) {
+                            document.getElementById('result').value = `${a} is prime number`;
+                        }
+                        else {
+                            document.getElementById('result').value = `${a} is not prime number`;
+                        }
+                    }
+                    else {
+                        document.getElementById('result').value = `${a} is not prime number`;
+                    }
+                }
+                //With Arguments No Return
+                else if (document.getElementById('f2').checked == true) {
+                    let xyz = document.getElementById('inp').value;
+
+                    //check prime number
+                    function prime(a) {
+                        let flag = true;
+                        if (a == 1) {
+                            document.getElementById('result').value = "1 is neither prime nor composite";
+                        }
+                        else if (a > 1) {
+                            for (let i = 2; i < a; i++) {
+                                if (a % i == 0) {
+                                    flag = false;
+                                    break;
+                                }
+                            }
+                            if (flag) {
+                                document.getElementById('result').value = `${a} is prime number`;
+                            }
+                            else {
+                                document.getElementById('result').value = `${a} is not prime number`;
+                            }
+                        }
+                        else {
+                            document.getElementById('result').value = `${a} is not prime number`;
+                        }
+                    }
+                    //function call
+                    prime(xyz);
+                }
+                //With Arguments With Return
+                else if (document.getElementById('f3').checked == true) {
+                    let xyz = document.getElementById('inp').value;
+
+                    //check prime number
+                    function prime(a) {
+                        let flag = true;
+                        if (a == 1) {
+                            return "1 is neither prime nor composite";
+                        }
+                        else if (a > 1) {
+                            for (let i = 2; i < a; i++) {
+                                if (a % i == 0) {
+                                    flag = false;
+                                    break;
+                                }
+                            }
+                            if (flag) {
+                                return `${a} is prime number`;
+                            }
+                            else {
+                                return `${a} is not prime number`;
+                            }
+                        }
+                        else {
+                            return `${a} is not prime number`;
+                        }
+                    }
+                    //functioncall
+                    document.getElementById('result').value = prime(xyz);
+                }
+                //No Argument With Return
+                else if (document.getElementById('f4').checked == true) {
+                    //check prime number
+                    function prime() {
+                        let a = document.getElementById('inp').value;
+                        let flag = true;
+                        if (a == 1) {
+                            return "1 is neither prime nor composite";
+                        }
+                        else if (a > 1) {
+                            for (let i = 2; i < a; i++) {
+                                if (a % i == 0) {
+                                    flag = false;
+                                    break;
+                                }
+                            }
+                            if (flag) {
+                                return `${a} is prime number`;
+                            }
+                            else {
+                                return `${a} is not prime number`;
+                            }
+                        }
+                        else {
+                            return `${a} is not prime number`;
+                        }
+                    }
+                    //functioncall
+                    document.getElementById('result').value = prime();
+                }
+                //Using Function Expression
+                else if (document.getElementById('f5').checked == true) {
+                    //check prime number using function expression
+                    var prime = function () {
+                        let a = document.getElementById('inp').value;
+                        let flag = true;
+                        if (a == 1) {
+                            return "1 is neither prime nor composite";
+                        }
+                        else if (a > 1) {
+                            for (let i = 2; i < a; i++) {
+                                if (a % i == 0) {
+                                    flag = false;
+                                    break;
+                                }
+                            }
+                            if (flag) {
+                                return `${a} is prime number`;
+                            }
+                            else {
+                                return `${a} is not prime number`;
+                            }
+                        }
+                        else {
+                            return `${a} is not prime number`;
+                        }
+                    };
+                    //functioncall
+                    document.getElementById('result').value = prime();
+                }
+                //using arrow function
+                else if (document.getElementById('f6').checked == true) {
+                    //check prime number using arrow function.
+                    var prime = () => {
+                        let a = document.getElementById('inp').value;
+                        let flag = true;
+                        if (a == 1) {
+                            return "1 is neither prime nor composite";
+                        }
+                        else if (a > 1) {
+                            for (let i = 2; i < a; i++) {
+                                if (a % i == 0) {
+                                    flag = false;
+                                    break;
+                                }
+                            }
+                            if (flag) {
+                                return `${a} is prime number`;
+                            }
+                            else {
+                                return `${a} is not prime number`;
+                            }
+                        }
+                        else {
+                            return `${a} is not prime number`;
+                        }
+                    }
+                    //functioncall
+                    document.getElementById('result').value = prime();
+                }
+                //Using Callback Function
+                else if (document.getElementById('f7').checked == true) {
+                    //call back function
+                    function call(callback) {
+                        callback();
+                    }
+                    //function call
+                    call(function prime() {
+                        let a = document.getElementById('inp').value;
+                        let flag = true;
+                        if (a == 1) {
+                            document.getElementById('result').value = "1 is neither prime nor composite";
+                        }
+                        else if (a > 1) {
+                            for (let i = 2; i < a; i++) {
+                                if (a % i == 0) {
+                                    flag = false;
+                                    break;
+                                }
+                            }
+                            if (flag) {
+                                document.getElementById('result').value = `${a} is prime number`;
+                            }
+                            else {
+                                document.getElementById('result').value = `${a} is not prime number`;
+                            }
+                        }
+                        else {
+                            document.getElementById('result').value = `${a} is not prime number`;
+                        }
+                    });
+                }
+                //promise function
+                else if (document.getElementById('f8').checked == true) {
+                    let a = document.getElementById('inp').value;
+                    let result = true;
+
+                    var promise = new Promise(function (resolve, reject) {
+                        if (a == 1) {
+                            document.getElementById('result').value = "1 is neither prime nor composite";
+                        }
+                        else if (a > 1) {
+                            for (let i = 2; i < a; i++) {
+                                if (a % i == 0) {
+                                    result = false;
+                                    break;
+                                }
+                            }
+                            if (result) {
+                                resolve();
+
+                            }
+                            else {
+                                reject();
+
+                            }
+                        }
+                        else {
+                            document.getElementById('result').value = `${a} is not prime number`;
+                        }
+                    });
+
+                    promise.then(function () { document.getElementById('result').value = `${a} is prime number`; }).catch(function () { document.getElementById('result').value = `${a} is not prime number`; });
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

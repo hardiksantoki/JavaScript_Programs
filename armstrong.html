@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript-Code</title>
+    <style>
+        input[type="text"] {
+            width: 205px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <table border=1 style="background-color: rgba(59, 58, 58, 0.116);">
+            <thead style="background-color: rgba(59, 58, 58, 0.11);">
+                <th colspan="2">
+                    <h3>3. Check Armstrong Number</h3>
+                </th>
+            </thead>
+            <tr>
+                <td>Please Enter Value</td>
+                <td><input type="text" name="" id="inp" placeholder="Enter Value"
+                        style="background-color: rgba(48, 97, 81, 0.247);"></td>
+            </tr>
+            <tr>
+                <td>1. Check Armstrong Number Using No Arguments No Return Value</td>
+                <td><input type="radio" name="select" id="f1"></td>
+            </tr>
+            <tr>
+                <td>2. Check Armstrong Number Using With Arguments No Return Value</td>
+                <td><input type="radio" name="select" id="f2"></td>
+            </tr>
+            <tr>
+                <td>3. Check Armstrong Number Using With Arguments With Return Value</td>
+                <td><input type="radio" name="select" id="f3"></td>
+            </tr>
+            <tr>
+                <td>4. Check Armstrong Number Using No Argument With Return Value</td>
+                <td><input type="radio" name="select" id="f4"></td>
+            </tr>
+            <tr>
+                <td>5. Check Armstrong Number Using Function Expression</td>
+                <td><input type="radio" name="select" id="f5"></td>
+            </tr>
+            <tr>
+                <td>6. Check Armstrong Number Using Arrow Function</td>
+                <td><input type="radio" name="select" id="f6"></td>
+            </tr>
+            <tr>
+                <td>7. Check Armstrong Number Using Callback Function</td>
+                <td><input type="radio" name="select" id="f7"></td>
+            </tr>
+            <tr>
+                <td>8. Check Armstrong Number Using Promise Function</td>
+                <td><input type="radio" name="select" id="f8"></td>
+            </tr>
+            <tr>
+                <td><button style="background-color: rgba(0, 0, 0, 0.274);" onclick="btn()"><b>Result</b></button></td>
+                <td><input type="text" name="" id="result" placeholder="Result"
+                        style="background-color: rgba(48, 97, 81, 0.247);font-weight: bold;">
+                </td>
+            </tr>
+        </table>
+    </center>
+    <script>
+        function btn() {
+            //check for null value
+            if (document.getElementById('inp').value == "") {
+                document.getElementById('result').value = "Please Enter Value";
+            }
+            //check for numaric value
+            else if (!document.getElementById('inp').value.match(/^[0-9]*$/)) {
+                document.getElementById('result').value = "Please Enter only numaric value";
+            }
+            else if (document.querySelectorAll('input[type="radio"]:checked').length == 0) {
+                document.getElementById('result').value = "Please Select one option";
+            }
+            //prime number check
+            else {
+                //no argument no return
+                if (document.getElementById('f1').checked == true) {
+                    const a = document.getElementById('inp').value;
+                    let b = a;
+                    let c, x, sum = 0;
+                    while (b > 0) {
+                        c = b % 10;
+                        b = parseInt(b / 10);
+                        x = Math.pow(c, a.length);
+                        console.log(x);
+                        sum = sum + x;
+                    }
+                    if (sum == a) {
+                        document.getElementById('result').value = `${a} is armstrong number`;
+                    }
+                    else {
+                        document.getElementById('result').value = `${a} is not armstrong number`;
+                    }
+                }
+                //With Arguments No Return
+                else if (document.getElementById('f2').checked == true) {
+                    const xyz = document.getElementById('inp').value;
+
+                    //check palindrome number
+                    function armstrong(a, sum = 0) {
+                        let b = a;
+                        let c, x;
+                        while (b > 0) {
+                            c = b % 10;
+                            b = parseInt(b / 10);
+                            x = Math.pow(c, a.length);
+                            console.log(x);
+                            sum = sum + x;
+                        }
+                        if (sum == a) {
+                            document.getElementById('result').value = `${a} is armstrong number`;
+                        }
+                        else {
+                            document.getElementById('result').value = `${a} is not armstrong number`;
+                        }
+                    }
+                    //function call
+                    armstrong(xyz);
+                }
+                //With Arguments With Return
+                else if (document.getElementById('f3').checked == true) {
+                    const xyz = document.getElementById('inp').value;
+
+                    //check armstrong number
+                    function armstrong(a, sum = 0) {
+                        let b = a;
+                        let c, x;
+                        while (b > 0) {
+                            c = b % 10;
+                            b = parseInt(b / 10);
+                            x = Math.pow(c, a.length);
+                            console.log(x);
+                            sum = sum + x;
+                        }
+                        if (sum == a) {
+                            return `${a} is armstrong number`;
+                        }
+                        else {
+                            return `${a} is not armstrong number`;
+                        }
+                    }
+                    //functioncall
+                    document.getElementById('result').value = armstrong(xyz);
+                }
+                //No Argument With Return
+                else if (document.getElementById('f4').checked == true) {
+                    //check armstrong number
+                    function armstrong() {
+                        const a = document.getElementById('inp').value;
+                        let b = a;
+                        let c, x, sum = 0;
+                        while (b > 0) {
+                            c = b % 10;
+                            b = parseInt(b / 10);
+                            x = Math.pow(c, a.length);
+                            console.log(x);
+                            sum = sum + x;
+                        }
+                        if (sum == a) {
+                            return `${a} is armstrong number`;
+                        }
+                        else {
+                            return `${a} is not armstrong number`;
+                        }
+                    }
+                    //functioncall
+                    document.getElementById('result').value = armstrong();
+                }
+                //Using Function Expression
+                else if (document.getElementById('f5').checked == true) {
+                    const abc = document.getElementById('inp').value;
+                    //check palindrome number
+                    var armstrong = function (a) {
+                        let b = a;
+                        let c, x, sum = 0;
+                        while (b > 0) {
+                            c = b % 10;
+                            b = parseInt(b / 10);
+                            x = Math.pow(c, a.length);
+                            console.log(x);
+                            sum = sum + x;
+                        }
+                        if (sum == a) {
+                            return `${a} is armstrong number`;
+                        }
+                        else {
+                            return `${a} is not armstrong number`;
+                        }
+                    };
+
+                    //functioncall
+                    document.getElementById('result').value = armstrong(abc);
+                }
+                //using arrow function
+                else if (document.getElementById('f6').checked == true) {
+                    const abc = document.getElementById('inp').value;
+                    //check palindrome number
+                    var armstrong = a => {
+                        let b = a;
+                        let c, x, sum = 0;
+                        while (b > 0) {
+                            c = b % 10;
+                            b = parseInt(b / 10);
+                            x = Math.pow(c, a.length);
+                            console.log(x);
+                            sum = sum + x;
+                        }
+                        if (sum == a) {
+                            return `${a} is armstrong number`;
+                        }
+                        else {
+                            return `${a} is not armstrong number`;
+                        }
+                    };
+
+                    //functioncall
+                    document.getElementById('result').value = armstrong(abc);
+                }
+                //Using Callback Function
+                else if (document.getElementById('f7').checked == true) {
+                    const abc = document.getElementById('inp').value;
+                    //check palindrome number
+                    var armstrong = a => {
+                        let b = a;
+                        let c, x, sum = 0;
+                        while (b > 0) {
+                            c = b % 10;
+                            b = parseInt(b / 10);
+                            x = Math.pow(c, a.length);
+                            console.log(x);
+                            sum = sum + x;
+                        }
+                        if (sum == a) {
+                            return `${a} is armstrong number`;
+                        }
+                        else {
+                            return `${a} is not armstrong number`;
+                        }
+                    };
+
+                    //functioncall
+                    document.getElementById('result').value = armstrong(abc);
+                }
+                //promise function
+                else if (document.getElementById('f8').checked == true) {
+                    const a = document.getElementById('inp').value;
+                    let b = a;
+                    let c, x, sum = 0;
+                    var promise = new Promise(function (resolve, reject) {
+                        while (b > 0) {
+                            c = b % 10;
+                            b = parseInt(b / 10);
+                            x = Math.pow(c, a.length);
+                            console.log(x);
+                            sum = sum + x;
+                        }
+                        if (sum == a) {
+                            resolve();
+
+                        }
+                        else {
+                            reject();
+
+                        }
+                    });
+                    promise.then(function () { document.getElementById('result').value = `${a} is armstrong number`; }).catch(function () { document.getElementById('result').value = `${a} is not armstrong number`; });
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
